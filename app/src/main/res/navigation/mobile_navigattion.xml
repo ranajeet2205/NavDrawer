@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigattion"
+    app:startDestination="@id/fragmentImport">
+
+    <fragment
+        android:id="@+id/fragmentImport"
+        android:name="com.stlindia.navdrawer.fragments.FragmentImport"
+        android:label="fragment_import"
+        tools:layout="@layout/fragment_import" >
+        <action
+            android:id="@+id/action_fragmentImport_to_fragmentGallery"
+            app:destination="@id/fragmentGallery" />
+        <argument
+            android:name="Name"
+            android:defaultValue="Import"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentGallery"
+        android:name="com.stlindia.navdrawer.fragments.FragmentGallery"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_fragmentGallery_to_fragmentSlideShow"
+            app:destination="@id/fragmentSlideShow" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSlideShow"
+        android:name="com.stlindia.navdrawer.fragments.FragmentSlideShow"
+        android:label="fragment_slideshow"
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_fragmentSlideShow_to_fragmentTools"
+            app:destination="@id/fragmentTools" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTools"
+        android:name="com.stlindia.navdrawer.fragments.FragmentTools"
+        android:label="fragment_tools"
+        tools:layout="@layout/fragment_tools" />
+    <fragment
+        android:id="@+id/fragmentShare"
+        android:name="com.stlindia.navdrawer.fragments.FragmentShare"
+        android:label="fragment_share"
+        tools:layout="@layout/fragment_share" />
+    <fragment
+        android:id="@+id/fragmentSend"
+        android:name="com.stlindia.navdrawer.fragments.FragmentSend"
+        android:label="fragment_send"
+        tools:layout="@layout/fragment_send" />
+</navigation>
