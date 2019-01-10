@@ -8,47 +8,68 @@
     <fragment
         android:id="@+id/fragmentImport"
         android:name="com.stlindia.navdrawer.fragments.FragmentImport"
-        android:label="fragment_import"
+        android:label="Import"
         tools:layout="@layout/fragment_import" >
         <action
             android:id="@+id/action_fragmentImport_to_fragmentGallery"
-            app:destination="@id/fragmentGallery" />
+            app:destination="@id/fragmentGallery"
+            app:popUpTo="@+id/fragmentImport" />
         <argument
             android:name="Name"
             android:defaultValue="Import"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentImport_to_fragmentShare"
+            app:destination="@id/fragmentShare"
+            app:popUpTo="@+id/fragmentImport" />
+        <action
+            android:id="@+id/action_fragmentImport_to_fragmentSend"
+            app:destination="@id/fragmentSend"
+            app:popUpTo="@+id/fragmentImport" />
     </fragment>
     <fragment
         android:id="@+id/fragmentGallery"
         android:name="com.stlindia.navdrawer.fragments.FragmentGallery"
-        android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" >
+        android:label="Gallery"
+        tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_fragmentGallery_to_fragmentSlideShow"
-            app:destination="@id/fragmentSlideShow" />
+            app:destination="@id/fragmentSlideShow"
+            app:popUpTo="@+id/fragmentImport" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSlideShow"
         android:name="com.stlindia.navdrawer.fragments.FragmentSlideShow"
-        android:label="fragment_slideshow"
-        tools:layout="@layout/fragment_slideshow" >
+        android:label="SlideShow"
+        tools:layout="@layout/fragment_slideshow">
         <action
             android:id="@+id/action_fragmentSlideShow_to_fragmentTools"
-            app:destination="@id/fragmentTools" />
+            app:destination="@id/fragmentTools"
+            app:popUpTo="@+id/fragmentImport" />
     </fragment>
     <fragment
         android:id="@+id/fragmentTools"
         android:name="com.stlindia.navdrawer.fragments.FragmentTools"
-        android:label="fragment_tools"
+        android:label="Tools"
         tools:layout="@layout/fragment_tools" />
     <fragment
         android:id="@+id/fragmentShare"
         android:name="com.stlindia.navdrawer.fragments.FragmentShare"
-        android:label="fragment_share"
-        tools:layout="@layout/fragment_share" />
+        android:label="Share"
+        tools:layout="@layout/fragment_share">
+        <action
+            android:id="@+id/action_fragmentShare_to_blankFragment"
+            app:destination="@+id/blankFragment"
+            app:popUpTo="@+id/fragmentImport" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentSend"
         android:name="com.stlindia.navdrawer.fragments.FragmentSend"
-        android:label="fragment_send"
+        android:label="Send"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.stlindia.navdrawer.fragments.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>

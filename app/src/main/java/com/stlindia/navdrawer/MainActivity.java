@@ -1,6 +1,8 @@
 package com.stlindia.navdrawer;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -17,13 +19,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    NavController navController ;
-    Toolbar toolbar;
+     NavController navController ;
+
+     Toolbar toolbar;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +38,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //Navigation Control Object Which accepts two argument activity and ID OF Host Fragment
         navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -53,12 +62,17 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //Create Up Button In action bar
+       // NavigationUI.setupActionBarWithNavController(this,navController,drawer);
+
+        NavigationUI.setupWithNavController(navigationView,navController);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -82,6 +96,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            navController.navigate(R.id.blankFragment);
             return true;
         }
 
@@ -100,14 +115,13 @@ public class MainActivity extends AppCompatActivity
 
             //Navigation controller controls the navigation From Home Fragment to Destination Fragment
             navController.navigate(R.id.fragmentImport);
-            toolbar.setTitle("Camera");
 
         } else if (id == R.id.nav_gallery) {
 
            // navController.navigate(R.id.action_fragmentImport_to_fragmentGallery);
 
             navController.navigate(R.id.fragmentGallery);
-            toolbar.setTitle("Gallery");
+            //toolbar.setTitle("Gallery");
         } else if (id == R.id.nav_slideshow) {
 
             //navController.navigate(R.id.action_fragmentGallery_to_fragmentSlideShow);
@@ -116,17 +130,17 @@ public class MainActivity extends AppCompatActivity
             //navController.navigate(R.id.action_fragmentSlideShow_to_fragmentTools);
 
             navController.navigate(R.id.fragmentTools);
-            toolbar.setTitle("Tools");
+           // toolbar.setTitle("Tools");
         } else if (id == R.id.nav_share) {
 
             navController.navigate(R.id.fragmentShare);
-            toolbar.setTitle("Share");
+           // toolbar.setTitle("Share");
         } else if (id == R.id.nav_send) {
             navController.navigate(R.id.fragmentSend);
-            toolbar.setTitle("Send");
+           // toolbar.setTitle("Send");
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
