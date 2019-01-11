@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
      NavController navController ;
-
+    NavigationView navigationView;
      Toolbar toolbar;
     DrawerLayout drawer;
 
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                navController.navigate(R.id.blankFragment1);
             }
         });
 
@@ -61,14 +61,18 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         //Create Up Button In action bar
        // NavigationUI.setupActionBarWithNavController(this,navController,drawer);
 
         NavigationUI.setupWithNavController(navigationView,navController);
-        navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -108,8 +112,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-
+        navigationView.setNavigationItemSelectedListener(this);
         if (id == R.id.nav_camera) {
             // Handle the camera action
 
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity
            // navController.navigate(R.id.action_fragmentImport_to_fragmentGallery);
 
             navController.navigate(R.id.fragmentGallery);
+
             //toolbar.setTitle("Gallery");
         } else if (id == R.id.nav_slideshow) {
 
