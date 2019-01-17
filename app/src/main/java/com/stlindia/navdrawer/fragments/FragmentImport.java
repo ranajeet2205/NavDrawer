@@ -21,4 +21,10 @@ public class FragmentImport extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Import");
+        super.onResume();
+    }
+
 }

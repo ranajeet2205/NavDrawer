@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_fragmentImport_to_fragmentGallery"
             app:destination="@id/fragmentGallery"
-            app:popUpTo="@+id/fragmentImport" />
+            />
         <argument
             android:name="Name"
             android:defaultValue="Import"
@@ -21,11 +21,11 @@
         <action
             android:id="@+id/action_fragmentImport_to_fragmentShare"
             app:destination="@id/fragmentShare"
-            app:popUpTo="@+id/fragmentImport" />
+            />
         <action
             android:id="@+id/action_fragmentImport_to_fragmentSend"
             app:destination="@id/fragmentSend"
-            app:popUpTo="@+id/fragmentImport" />
+            />
     </fragment>
     <fragment
         android:id="@+id/fragmentGallery"
@@ -35,7 +35,7 @@
         <action
             android:id="@+id/action_fragmentGallery_to_fragmentSlideShow"
             app:destination="@id/fragmentSlideShow"
-            app:popUpTo="@+id/fragmentImport" />
+            />
     </fragment>
     <fragment
         android:id="@+id/fragmentSlideShow"
@@ -45,7 +45,7 @@
         <action
             android:id="@+id/action_fragmentSlideShow_to_fragmentTools"
             app:destination="@id/fragmentTools"
-            app:popUpTo="@+id/fragmentImport" />
+            />
     </fragment>
     <fragment
         android:id="@+id/fragmentTools"
@@ -59,8 +59,8 @@
         tools:layout="@layout/fragment_share">
         <action
             android:id="@+id/action_fragmentShare_to_blankFragment"
-            app:destination="@+id/blankFragment"
-            app:popUpTo="@+id/fragmentImport" />
+            app:destination="@id/blankFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/fragmentSend"
@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.stlindia.navdrawer.fragments.BlankFragment"
-        android:label="fragment_blank"
+        android:label="Blank"
         tools:layout="@layout/fragment_blank" >
         <action
             android:id="@+id/action_blankFragment_to_blankFragment1"
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragment1"
-        android:name="com.stlindia.navdrawer.BlankFragment1"
-        android:label="fragment_blank_fragment1"
+        android:name="com.stlindia.navdrawer.fragments.BlankFragment1"
+        android:label="Fab"
         tools:layout="@layout/fragment_blank_fragment1" />
 </navigation>

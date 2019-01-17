@@ -27,9 +27,9 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-     NavController navController ;
+    NavController navController;
     NavigationView navigationView;
-     Toolbar toolbar;
+    Toolbar toolbar;
     DrawerLayout drawer;
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //Navigation Control Object Which accepts two argument activity and ID OF Host Fragment
-        navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -61,17 +61,16 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         //Create Up Button In action bar
-       // NavigationUI.setupActionBarWithNavController(this,navController,drawer);
+        // NavigationUI.setupActionBarWithNavController(this,navController,drawer);
 
-        NavigationUI.setupWithNavController(navigationView,navController);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
-
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
-
 
 
     @Override
@@ -112,39 +111,55 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        navigationView.setNavigationItemSelectedListener(this);
+        //gets the Current destination of navController
+        int current = navController.getCurrentDestination().getId();
+
         if (id == R.id.nav_camera) {
             // Handle the camera action
 
             //Navigation controller controls the navigation From Home Fragment to Destination Fragment
-            navController.navigate(R.id.fragmentImport);
+            //And also checks if the current destination is selected then it will not add to its stack
+            if (R.id.fragmentImport != current) {
+                navController.navigate(R.id.fragmentImport);
+            }
+
 
         } else if (id == R.id.nav_gallery) {
 
-           // navController.navigate(R.id.action_fragmentImport_to_fragmentGallery);
+            // navController.navigate(R.id.action_fragmentImport_to_fragmentGallery);
+            //It does the Same as above code
+            if (R.id.fragmentGallery != current) {
+                navController.navigate(R.id.fragmentGallery);
+            }
 
-            navController.navigate(R.id.fragmentGallery);
 
-            //toolbar.setTitle("Gallery");
         } else if (id == R.id.nav_slideshow) {
 
             //navController.navigate(R.id.action_fragmentGallery_to_fragmentSlideShow);
-            navController.navigate(R.id.fragmentSlideShow);
-        } else if (id == R.id.nav_manage) {
-            //navController.navigate(R.id.action_fragmentSlideShow_to_fragmentTools);
+            if (R.id.fragmentSlideShow != current) {
+                navController.navigate(R.id.fragmentSlideShow);
+            }
 
-            navController.navigate(R.id.fragmentTools);
-           // toolbar.setTitle("Tools");
+        } else if (id == R.id.nav_manage) {
+
+            //navController.navigate(R.id.action_fragmentSlideShow_to_fragmentTools);
+            if (R.id.fragmentTools != current) {
+                navController.navigate(R.id.fragmentTools);
+            }
+
         } else if (id == R.id.nav_share) {
 
-            navController.navigate(R.id.fragmentShare);
-           // toolbar.setTitle("Share");
+            if (R.id.fragmentShare != current) {
+                navController.navigate(R.id.fragmentShare);
+            }
+
         } else if (id == R.id.nav_send) {
-            navController.navigate(R.id.fragmentSend);
-           // toolbar.setTitle("Send");
+            if (R.id.fragmentSend != current) {
+                navController.navigate(R.id.fragmentSend);
+            }
         }
 
-         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
